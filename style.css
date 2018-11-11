@@ -134,6 +134,7 @@ body {
 
 
 input:disabled {
+	color: black;
 	background-color: white;
 	border: solid 1px #b0b0b0;
 }

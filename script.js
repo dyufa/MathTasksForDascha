@@ -278,8 +278,11 @@ class Context {
 
 	_setAufgabe(aufgabe) {
 		this.setFirstValue(aufgabe.first);
+		this.enableElement(this._firstValue, aufgabe.first === null)
 		this.setSecondValue(aufgabe.second);
+		this.enableElement(this._secondValue, aufgabe.second === null)
 		this.setResult(aufgabe.result);
+		this.enableElement(this._result, aufgabe.result === null)
 		this.setOperator(aufgabe.func);
 	}
 
