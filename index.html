@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="style.css">
+    <title>Mathe</title>
+</head>
+<body>
+
+	<div id="popup">
+		Hello
+	</div>
+
+
+
+
+	<div id="settings">
+
+
+		<div>Aufgabentype:</div>
+		<select id="aufgabentype">
+			<option value="plus">Plusaufgaben</option>
+			<option value="minus">Minusaufgaben</option>
+			<option value="umkehr">Umkehraufgaben</option>
+		</select>
+
+
+		<div>Zahlenbereich:</div>
+		<select id="zahlenbereich">
+			<option value="10">bis 10</option>
+			<option value="20">bis 20</option>
+			<option value="30">bis 30</option>
+			<option value="50">bis 50</option>
+			<option value="100">bis 100</option>
+		</select>
+
+	</div>
+
+	<img src="image.jpg" />
+
+
+	<form id="aufgabe">
+
+		<input id="first" type="number" />
+		<div id="op">+</div>
+		<input id="second" type="number" />
+		<div>=</div>
+		<input id="result" type="number" />
+
+	</form>
+
+
+
+	<button form="aufgabe" type="submit" id="action">Auswerten</button>
+
+
+
+
+	<script src="script.js"></script>
+</body>
+</html>

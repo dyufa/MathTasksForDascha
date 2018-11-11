@@ -1,0 +1,109 @@
+body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+img {
+	margin-left: 200px;
+}
+
+#popup {
+	display: none;
+	position: absolute;
+	width: 300px;
+	height: 300px;
+	border: solid 2px green;
+	border-radius: 3px;
+	left: 198px;
+	top: 80px;
+	background-color: #e0ffe0;
+	color: green;
+	font-family: Arial;
+	font-size: 30px;
+	align-items: center;
+	justify-content: center;
+	opacity: 0.9;
+}
+
+#popup.visible {
+	display: flex;
+}
+
+#popup.wrong {
+	color: red;
+	border-color: red;
+	background-color: #ffe0e0;
+}
+
+
+
+#settings {
+	display: flex;
+	margin-top: 20px;
+	margin-left: 100px;
+	margin-bottom: 30px;
+	font-family: Arial;
+	font-size: 16px;
+}
+
+#settings * {
+	font-family: Arial;
+	font-size: 16px;
+}
+
+#settings select {
+	height: 30px;
+	margin-right: 50px;
+}
+#settings div {
+	margin-top: 5px;
+	margin-right: 10px;
+}
+
+
+
+
+
+#aufgabe {
+	display: flex;
+	margin-top: 60px;
+	margin-left: 100px;
+	margin-bottom: 30px;
+	font-family: Arial;
+	font-size: 20px;
+}
+
+#aufgabe input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#aufgabe div {
+	margin-top: 4px;
+
+	margin-left: 10px;
+	margin-right: 10px;
+
+	height: 30px;
+	font-size: 24px;
+}
+
+
+#action {
+	margin-top: 20px;
+	margin-left: 200px;
+	width: 300px;
+	font-family: Arial;
+	font-size: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+input:disabled {
+	background-color: white;
+	border: solid 1px #b0b0b0;
+}
