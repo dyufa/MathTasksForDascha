@@ -240,7 +240,7 @@ class Context {
 
 
 		if (func(v1, v2, r)) {
-			this.showPopup("Richtig!", true, 500, () => {
+			this.showPopup("Richtig!", true, 1000, () => {
 				this.generateNext();
 			});
 		}
@@ -248,6 +248,7 @@ class Context {
 			this.showPopup("Nicht richtig!", false, 1000, () => {
 				this._inputField.value = null;
 				this.updateActionButton();
+				this._inputField.focus();
 			});
 		}
 	}
@@ -284,9 +285,7 @@ class Context {
 
 
 	generateNext() {
-		const aufgabeType = this.getAufgabenType();
-
-		switch (aufgabeType) {
+		switch (this.getAufgabenType()) {
 		case "plus":
 			this._setAufgabe(new Aufgabe("plus-result", this.getMaxNumber()));
 			this._inputField = this._result;
@@ -296,7 +295,6 @@ class Context {
 			this._inputField = this._result;
 				break;
 		case "umkehr-plus":
-			//const v = getRandomInt(0, 1);
 			switch (getRandomInt(0, 1)) {
 			case 0:
 				this._setAufgabe(new Aufgabe("plus-first", this.getMaxNumber()));
@@ -309,7 +307,6 @@ class Context {
 			}
 			break;
 		case "umkehr-minus":
-			//const v = getRandomInt(0, 1);
 			switch (getRandomInt(0, 1)) {
 			case 0:
 				this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber()));
@@ -321,8 +318,15 @@ class Context {
 				break;
 			}
 			break;
+		case "umkehr-minus-first":
+			this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber()));
+			this._inputField = this._firstValue;
+			break;
+		case "umkehr-minus-second":
+			this._setAufgabe(new Aufgabe("minus-second", this.getMaxNumber()));
+			this._inputField = this._secondValue;
+			break;
 		case "umkehr":
-			//const v = getRandomInt(0, 3);
 			switch (getRandomInt(0, 3)) {
 			case 0:
 				this._setAufgabe(new Aufgabe("plus-first", this.getMaxNumber()));
@@ -348,6 +352,14 @@ class Context {
 		this.updateActionButton();
 	}
 }
+
+
+
+
+//const imageContainer = document.querySelector("#image");
+//const image = document.querySelector("#image img");
+//imageContainer.style.width = image.naturalWidth.toString() + "px";
+//imageContainer.style.height = image.naturalHeight.toString() + "px";
 
 
 
