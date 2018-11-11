@@ -6,6 +6,71 @@ function getRandomInt(min, max) {
 }
 
 
+
+
+
+
+class Aufgabe {
+
+
+	_initPlus() {
+		this.func = "+";
+		this.first = getRandomInt(0, this.maxNumber);
+		do {
+			this.second = getRandomInt(0, this.maxNumber);
+			this.result = this.first + this.second;
+		} while (this.result > this.maxNumber);
+	}
+
+
+	_initMinus() {
+		this.func = "-";
+		this.first = getRandomInt(0, this.maxNumber);
+		do {
+			this.second = getRandomInt(0, this.maxNumber);
+			this.result = this.first - this.second;
+		} while (this.result < 0);
+	}
+
+
+
+	constructor(type, maxNumber) {
+		this.maxNumber = maxNumber;
+		switch (type) {
+			case "plus-first":
+				this._initPlus();
+				this.first = null;
+				break;
+			case "plus-second":
+				this._initPlus();
+				this.second = null;
+				break;
+			case "plus-result":
+				this._initPlus();
+				this.result = null;
+				break;
+			case "minus-first":
+				this._initMinus();
+				this.first = null;
+				break;
+			case "minus-second":
+				this._initMinus();
+				this.second = null;
+				break;
+			case "minus-result":
+				this._initMinus();
+				this.result = null;
+				break;
+		}
+	}
+}
+
+
+
+
+
+
+
 class Context {
 
 
@@ -180,7 +245,7 @@ class Context {
 			});
 		}
 		else {
-			this.showPopup("Nicht richtig!", false, 800, () => {
+			this.showPopup("Nicht richtig!", false, 1000, () => {
 				this._inputField.value = null;
 				this.updateActionButton();
 			});
@@ -191,9 +256,6 @@ class Context {
 
 
 	constructor() {
-
-
-
 
 		this.initPopup();
 		this.initOperator();
@@ -206,148 +268,80 @@ class Context {
 		this.initAufgabenType();
 		this.initActionButton();
 
-
 		this.updateActionButton();
-
-
-
 		this.generateNext();
 	}
 
 
+	
 
-
-
-	generatePlus(maxNumber) {
-		console.log("Neue Plusaufgabe: ", maxNumber);
-
-
-		const first = getRandomInt(0, maxNumber);
-		console.log(first);
-		let second = 0;
-		do {
-			second = getRandomInt(0, maxNumber);
-		} while (first + second > maxNumber);
-
-
-
-		this.setFirstValue(first);
-		this.setSecondValue(second);
-		this.setOperator("+");
-		this.setResult(null);
-
-
-		this.enableElement(this._firstValue, false);
-		this.enableElement(this._secondValue, false);
-		this.enableElement(this._result, true);
-		this._inputField = this._result;
-	}
-
-
-	generateMinus(maxNumber) {
-		console.log("Neue Minusaufgabe: ", maxNumber);
-
-		
-
-
-		const first = getRandomInt(0, maxNumber);
-		console.log(first);
-		let second = 0;
-		do {
-			second = getRandomInt(0, maxNumber);
-		} while (first - second < 0);
-
-
-
-		this.setFirstValue(first);
-		this.setSecondValue(second);
-		this.setOperator("-");
-		this.setResult(null);
-
-
-		this.enableElement(this._firstValue, false);
-		this.enableElement(this._secondValue, false);
-		this.enableElement(this._result, true);
-		this._inputField = this._result;
-
-
-	}
-	generateUmkehr(maxNumber) {
-		console.log("Neue Umkehraufgabe: ", maxNumber);
-
-		const firstUnknown = getRandomInt(0, 1);
-		const plusAufgabe = getRandomInt(0, 1);
-
-		let res = null;
-		let first = null;
-		let second = null;
-
-
-		if (firstUnknown === 1) {
-			this.enableElement(this._firstValue, true);
-			this._inputField = this._firstValue;
-			this.enableElement(this._secondValue, false);
-			this.enableElement(this._result, false);
-			if (plusAufgabe === 1) {
-				this.setOperator("+");
-				res = getRandomInt(0, maxNumber);
-				do {
-					second = getRandomInt(0, maxNumber);
-				} while (res - second < 0);
-
-			}
-			else {
-				this.setOperator("-");
-				first = getRandomInt(0, maxNumber);
-				do {
-					second = getRandomInt(0, maxNumber);
-					res = first - second;
-				} while (res < 0);
-				first = null;
-			}
-		}
-		else {
-			this.enableElement(this._firstValue, false);
-			this.enableElement(this._secondValue, true);
-			this._inputField = this._secondValue;
-			this.enableElement(this._result, false);
-			if (plusAufgabe === 1) {
-				this.setOperator("+");
-				res = getRandomInt(0, maxNumber);
-				do {
-					first = getRandomInt(0, maxNumber);
-				} while (res - first < 0);
-			}
-			else {
-				this.setOperator("-");
-				first = getRandomInt(0, maxNumber);
-				do {
-					res = getRandomInt(0, maxNumber);
-				} while (first - res < 0);
-			}
-		}
-
-		this.setFirstValue(first);
-		this.setSecondValue(second);
-		this.setResult(res);
+	_setAufgabe(aufgabe) {
+		this.setFirstValue(aufgabe.first);
+		this.setSecondValue(aufgabe.second);
+		this.setResult(aufgabe.result);
+		this.setOperator(aufgabe.func);
 	}
 
 
 	generateNext() {
 		const aufgabeType = this.getAufgabenType();
-		const maxNumber = this.getMaxNumber();
-
 
 		switch (aufgabeType) {
-			case "plus":
-				this.generatePlus(maxNumber);
+		case "plus":
+			this._setAufgabe(new Aufgabe("plus-result", this.getMaxNumber()));
+			this._inputField = this._result;
+			break;
+		case "minus":
+			this._setAufgabe(new Aufgabe("minus-result", this.getMaxNumber()));
+			this._inputField = this._result;
 				break;
-			case "minus":
-				this.generateMinus(maxNumber);
+		case "umkehr-plus":
+			//const v = getRandomInt(0, 1);
+			switch (getRandomInt(0, 1)) {
+			case 0:
+				this._setAufgabe(new Aufgabe("plus-first", this.getMaxNumber()));
+				this._inputField = this._firstValue;
 				break;
-			case "umkehr":
-				this.generateUmkehr(maxNumber);
+			case 1:
+				this._setAufgabe(new Aufgabe("plus-second", this.getMaxNumber()));
+				this._inputField = this._secondValue;
 				break;
+			}
+			break;
+		case "umkehr-minus":
+			//const v = getRandomInt(0, 1);
+			switch (getRandomInt(0, 1)) {
+			case 0:
+				this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber()));
+				this._inputField = this._firstValue;
+				break;
+			case 1:
+				this._setAufgabe(new Aufgabe("minus-second", this.getMaxNumber()));
+				this._inputField = this._secondValue;
+				break;
+			}
+			break;
+		case "umkehr":
+			//const v = getRandomInt(0, 3);
+			switch (getRandomInt(0, 3)) {
+			case 0:
+				this._setAufgabe(new Aufgabe("plus-first", this.getMaxNumber()));
+				this._inputField = this._firstValue;
+				break;
+			case 1:
+				this._setAufgabe(new Aufgabe("plus-second", this.getMaxNumber()));
+				this._inputField = this._secondValue;
+				break;
+			case 2:
+				this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber()));
+				this._inputField = this._firstValue;
+				break;
+			case 3:
+				this._setAufgabe(new Aufgabe("minus-second", this.getMaxNumber()));
+				this._inputField = this._secondValue;
+				break;
+			}
+			break;
 		}
 
 		this._inputField.focus();
