@@ -15,21 +15,17 @@ class Aufgabe {
 
 	_initPlus() {
 		this.func = "+";
-		this.first = getRandomInt(0, this.maxNumber);
-		do {
-			this.second = getRandomInt(0, this.maxNumber);
-			this.result = this.first + this.second;
-		} while (this.result > this.maxNumber);
+		this.result = getRandomInt(0, this.maxNumber);
+		this.first = getRandomInt(0, this.result);
+		this.second = this.result - this.first;		
 	}
 
 
 	_initMinus() {
 		this.func = "-";
 		this.first = getRandomInt(0, this.maxNumber);
-		do {
-			this.second = getRandomInt(0, this.maxNumber);
-			this.result = this.first - this.second;
-		} while (this.result < 0);
+		this.result = getRandomInt(0, this.first);
+		this.second = this.first - this.result;		
 	}
 
 
