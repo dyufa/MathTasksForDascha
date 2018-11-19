@@ -30,7 +30,7 @@ class Aufgabe {
 
 
 
-	constructor(type, maxNumber) {
+	constructor(type, maxNumber, mal10) {
 		this.maxNumber = maxNumber;
 		switch (type) {
 			case "plus-first":
@@ -58,6 +58,20 @@ class Aufgabe {
 				this.result = null;
 				break;
 		}
+		
+		console.log("mal10:", mal10);
+		console.log(this);
+		
+		if (mal10 === true) {
+			if (this.first !== null)
+				this.first *= 10;
+			if (this.second !== null)
+				this.second *= 10;
+			if (this.result !== null)
+				this.result *= 10;
+		}
+		
+		console.log(this);
 	}
 }
 
@@ -93,6 +107,18 @@ class Context {
 	}
 
 
+
+
+	initMal10() {
+		this._mal10 = document.getElementById("mal10");
+		this._mal10.addEventListener("change", () => {
+			this.generateNext();
+		});
+	}
+	getMal10() {
+		console.log("returning:", this._mal10.checked);
+		return this._mal10.checked;
+	}
 
 
 
@@ -198,17 +224,17 @@ class Context {
 			this.evaluateExpression();
 		});
 	}
-	enableElement(element, enable) {
-		if (enable)
-			element.removeAttribute("disabled");
-		else
-			element.setAttribute("disabled", "true");
-	}
 	updateActionButton() {
 		if (isNaN(this.getFirstValue()) || isNaN(this.getSecondValue()) || isNaN(this.getResult()))
 			this.enableElement(this._actionButton, false);
 		else if (!this._showingPopup)
 			this.enableElement(this._actionButton, true);
+	}
+	enableElement(element, enable) {
+		if (enable)
+			element.removeAttribute("disabled");
+		else
+			element.setAttribute("disabled", "true");
 	}
 
 
@@ -253,18 +279,21 @@ class Context {
 
 
 	constructor() {
-
-		this.initPopup();
-		this.initOperator();
+		
+		this.initMaxNumber();
+		this.initAufgabenType();
+		this.initMal10();
 
 		this.initFirstValue();
 		this.initSecondValue();
 		this.initResult();
 
-		this.initMaxNumber();
-		this.initAufgabenType();
+		this.initOperator();
+		this.initPopup();
+		
 		this.initActionButton();
 
+		
 		this.updateActionButton();
 		this.generateNext();
 	}
@@ -284,23 +313,24 @@ class Context {
 
 
 	generateNext() {
+		console.log("generateNext:", this.getMal10());
 		switch (this.getAufgabenType()) {
 		case "plus":
-			this._setAufgabe(new Aufgabe("plus-result", this.getMaxNumber()));
+			this._setAufgabe(new Aufgabe("plus-result", this.getMaxNumber(), this.getMal10()));
 			this._inputField = this._result;
 			break;
 		case "minus":
-			this._setAufgabe(new Aufgabe("minus-result", this.getMaxNumber()));
+			this._setAufgabe(new Aufgabe("minus-result", this.getMaxNumber(), this.getMal10()));
 			this._inputField = this._result;
 				break;
 		case "umkehr-plus":
 			switch (getRandomInt(0, 1)) {
 			case 0:
-				this._setAufgabe(new Aufgabe("plus-first", this.getMaxNumber()));
+				this._setAufgabe(new Aufgabe("plus-first", this.getMaxNumber(), this.getMal10()));
 				this._inputField = this._firstValue;
 				break;
 			case 1:
-				this._setAufgabe(new Aufgabe("plus-second", this.getMaxNumber()));
+				this._setAufgabe(new Aufgabe("plus-second", this.getMaxNumber(), this.getMal10()));
 				this._inputField = this._secondValue;
 				break;
 			}
@@ -308,39 +338,39 @@ class Context {
 		case "umkehr-minus":
 			switch (getRandomInt(0, 1)) {
 			case 0:
-				this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber()));
+				this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber(), this.getMal10()));
 				this._inputField = this._firstValue;
 				break;
 			case 1:
-				this._setAufgabe(new Aufgabe("minus-second", this.getMaxNumber()));
+				this._setAufgabe(new Aufgabe("minus-second", this.getMaxNumber(), this.getMal10()));
 				this._inputField = this._secondValue;
 				break;
 			}
 			break;
 		case "umkehr-minus-first":
-			this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber()));
+			this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber(), this.getMal10()));
 			this._inputField = this._firstValue;
 			break;
 		case "umkehr-minus-second":
-			this._setAufgabe(new Aufgabe("minus-second", this.getMaxNumber()));
+			this._setAufgabe(new Aufgabe("minus-second", this.getMaxNumber(), this.getMal10()));
 			this._inputField = this._secondValue;
 			break;
 		case "umkehr":
 			switch (getRandomInt(0, 3)) {
 			case 0:
-				this._setAufgabe(new Aufgabe("plus-first", this.getMaxNumber()));
+				this._setAufgabe(new Aufgabe("plus-first", this.getMaxNumber(), this.getMal10()));
 				this._inputField = this._firstValue;
 				break;
 			case 1:
-				this._setAufgabe(new Aufgabe("plus-second", this.getMaxNumber()));
+				this._setAufgabe(new Aufgabe("plus-second", this.getMaxNumber(), this.getMal10()));
 				this._inputField = this._secondValue;
 				break;
 			case 2:
-				this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber()));
+				this._setAufgabe(new Aufgabe("minus-first", this.getMaxNumber(), this.getMal10()));
 				this._inputField = this._firstValue;
 				break;
 			case 3:
-				this._setAufgabe(new Aufgabe("minus-second", this.getMaxNumber()));
+				this._setAufgabe(new Aufgabe("minus-second", this.getMaxNumber(), this.getMal10()));
 				this._inputField = this._secondValue;
 				break;
 			}
@@ -351,14 +381,6 @@ class Context {
 		this.updateActionButton();
 	}
 }
-
-
-
-
-//const imageContainer = document.querySelector("#image");
-//const image = document.querySelector("#image img");
-//imageContainer.style.width = image.naturalWidth.toString() + "px";
-//imageContainer.style.height = image.naturalHeight.toString() + "px";
 
 
 

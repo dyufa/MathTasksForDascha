@@ -1,23 +1,25 @@
-body {
+html, body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.container {
 	margin: 0;
 	padding: 0;
 	border: 0;
 	display: flex;
-	justify-content: center;
-}
-
-
-
-#container {
-	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	height: 100%;
+	background-color: bisque;
 }
-
 
 #settings {
-	width: 600px;
+	/*background-color: pink;*/
+	width: 700px;
 
 	display: flex;
 	justify-content: space-between;
@@ -26,19 +28,29 @@ body {
 	font-family: Arial;
 	font-size: 16px;
 }
-	#settings .miniblock {
-		display: flex;
-		justify-content: center;
-	}
 
-	#settings * {
-		font-family: Arial;
-		font-size: 16px;
-	}
+#settings .miniblock {
+	display: flex;
+	justify-content: center;
+}
 
-	#settings select {
-		height: 30px;
-	}
+#settings * {
+	font-family: Arial;
+	font-size: 16px;
+}
+
+#settings select {
+	height: 30px;
+}
+
+#settings input {
+	margin-top: 7px;
+}
+#settings span {
+	margin-top: 5px;
+}
+
+
 
 .miniblock div {
 	margin-top: 5px;
