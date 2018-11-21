@@ -1,0 +1,31 @@
+:host {
+	flex-grow: 1;
+	background-color: bisque;
+	display: flex;
+	flex-direction: column;
+	// justify-content: center;
+	align-items: center;
+
+
+	// align-content: center;		// seems to do nothing. yes, its only for multiple lines
+	
+}
+
+
+img {
+	width: 400px;
+	height: 400px;
+}
+
+h1 {
+	display: block;
+	font-size: 80px;
+	color: chocolate;
+}
+
+h2 {
+	display: block;
+	font-size: 40px;
+	color: sienna;
+	margin-top: 45px;
+}

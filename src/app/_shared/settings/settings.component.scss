@@ -1,0 +1,29 @@
+:host {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+	margin-bottom: 30px;
+	font-family: Arial;
+	font-size: 16px;
+}
+
+
+.miniblock {
+	display: flex;
+	justify-content: center;
+}
+
+* {
+	font-family: Arial;
+	font-size: 16px;
+}
+
+select {
+	height: 30px;
+}
+
+
+.miniblock div {
+	margin-top: 5px;
+	margin-right: 10px;
+}
