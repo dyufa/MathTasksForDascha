@@ -5,7 +5,7 @@ import { PlusAufgabenComponent } from './workspaces/plus-aufgaben/plus-aufgaben.
 import { MinusAufgabenComponent } from './workspaces/minus-aufgaben/minus-aufgaben.component';
 
 const routes: Routes = [
-	{ path: '', component: HomeComponent },
+	{ path: 'home', component: HomeComponent },
 	{ path: 'plus', component: PlusAufgabenComponent },
 	{ path: 'minus', component: MinusAufgabenComponent },
 ];
