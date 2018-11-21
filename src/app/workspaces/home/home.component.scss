@@ -1,14 +1,11 @@
+@import "../../_shared/styles.scss";
+
 :host {
-	flex-grow: 1;
-	background-color: bisque;
+	height: 100%;
 	display: flex;
 	flex-direction: column;
-	// justify-content: center;
 	align-items: center;
-
-
-	// align-content: center;		// seems to do nothing. yes, its only for multiple lines
-	
+	background-color: $home-bgcolor;
 }
 
 

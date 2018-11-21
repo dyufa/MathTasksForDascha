@@ -1,6 +1,8 @@
+@import "../_shared/styles.scss";
+
 .navbar {
 	padding-left: 50px;
-	background-color: hotpink;
+	background-color: $hav-bgcolor;
 }
 
 .navbar-item {
@@ -10,10 +12,10 @@
 	padding-bottom: 10px;
 	font-family: "Arial";
 	font-size: 20px;
-	color: bisque;
+	color: $home-bgcolor;
 }
 
 a {
 	text-decoration: none;
-	color: bisque;
+	color: $home-bgcolor;
 }
