@@ -8,6 +8,7 @@ import { NavbarModule } from './navbar/navbar.module';
 import { PlusAufgabenModule } from './workspaces/plus-aufgaben/plus-aufgaben.module';
 import { MinusAufgabenModule } from './workspaces/minus-aufgaben/minus-aufgaben.module';
 import { SharedModule } from './_shared/shared.module';
+import { OldVersionModule } from './workspaces/old-version/old-version.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { SharedModule } from './_shared/shared.module';
 		NavbarModule,
 		HomeModule,
 		PlusAufgabenModule,
-		MinusAufgabenModule
+		MinusAufgabenModule,
+		OldVersionModule
 	],
 	providers: [],
 	bootstrap: [AppComponent]

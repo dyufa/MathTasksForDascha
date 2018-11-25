@@ -1,13 +1,17 @@
 @import "../_shared/styles.scss";
 
 .navbar {
+	display: flex;
+	justify-content: space-between;
 	padding-left: 50px;
+	padding-right: 50px;
 	background-color: $hav-bgcolor;
 }
 
 .navbar-item {
 	display: inline-block;
-	margin-left: 40px;
+	margin-left: 20px;
+	margin-right: 20px;
 	padding-top: 15px;
 	padding-bottom: 10px;
 	font-family: "Arial";

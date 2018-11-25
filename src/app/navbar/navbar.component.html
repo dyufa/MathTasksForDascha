@@ -1,5 +1,8 @@
 <div class="navbar">
-	<div class="navbar-item"><a [routerLinkActive]="['active']" [routerLink]="['/home']">Home</a></div>
-	<div class="navbar-item"><a [routerLinkActive]="['active']" [routerLink]="['/plus']">Plusaufgaben</a></div>
-	<div class="navbar-item"><a [routerLinkActive]="['active']" [routerLink]="['/minus']">Minusaufgaben</a></div>
+	<div>
+		<div class="navbar-item"><a [routerLinkActive]="['active']" [routerLink]="['/home']">Home</a></div>
+		<div class="navbar-item"><a [routerLinkActive]="['active']" [routerLink]="['/plus']">Plusaufgaben</a></div>
+		<div class="navbar-item"><a [routerLinkActive]="['active']" [routerLink]="['/minus']">Minusaufgaben</a></div>
+	</div>
+	<div class="navbar-item" style="align-self: flex-end"><a [routerLinkActive]="['active']" [routerLink]="['/old']">Alte Version</a></div>
 </div>
