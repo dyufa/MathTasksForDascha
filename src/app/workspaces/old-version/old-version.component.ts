@@ -9,7 +9,8 @@ class MyNumber {
 	constructor(readonly nativeElement: HTMLElement) {
 	}
 	focus() {
-		this.nativeElement.focus();
+		console.log("set focus for:", this);
+		setTimeout(() => this.nativeElement.focus());
 	}
 }
 

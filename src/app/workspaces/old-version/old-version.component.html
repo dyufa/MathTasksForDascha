@@ -44,11 +44,11 @@
 
 
 	<form class="aufgabe">
-		<input #firstInput name="first" type="number" [attr.disabled]="firstDisabledAttribute()" [(ngModel)]="first.value"/>
+		<input #firstInput name="first" type="number" [attr.disabled]="firstDisabledAttribute()" [(ngModel)]="first.value" (keyup.enter)="evaluate()"/>
 		<div>{{operator}}</div>
-		<input #secondInput name="second" type="number" [attr.disabled]="secondDisabledAttribute()" [(ngModel)]="second.value"/>
+		<input #secondInput name="second" type="number" [attr.disabled]="secondDisabledAttribute()" [(ngModel)]="second.value" (keyup.enter)="evaluate()"/>
 		<div>=</div>
-		<input #resultInput name="result" type="number" [attr.disabled]="resultDisabledAttribute()" [(ngModel)]="result.value"/>
+		<input #resultInput name="result" type="number" [attr.disabled]="resultDisabledAttribute()" [(ngModel)]="result.value" (keyup.enter)="evaluate()"/>
 	</form>
 
 
