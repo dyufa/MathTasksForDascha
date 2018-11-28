@@ -1,3 +1,56 @@
-<p>
-  old-version works!
-</p>
+<div class="container">
+	
+
+
+	<div class="settings">
+		<div class="miniblock">
+			<div>Aufgabentype:</div>
+			<select [(ngModel)]="aufgabenType" (change)="aufgabenTypeChanged()">
+				<option value="plus">Plusaufgaben</option>
+				<option value="minus">Minusaufgaben</option>
+				<option value="umkehr">Umkehraufgaben</option>
+				<option value="umkehr-plus">Plus Umkehraufgaben</option>
+				<option value="umkehr-minus">Minus Umkehraufgaben</option>
+				<option value="umkehr-minus-first">Minus Umkehraufgaben 1</option>
+				<option value="umkehr-minus-second">Minus Umkehraufgaben 2</option>
+			</select>
+		</div>
+		<div class="miniblock">
+			<div>Zahlenbereich:</div>
+			<select [(ngModel)]="zahlenBereich" (change)="zahlenBereichChanged()">
+				<option value="10">bis 10</option>
+				<option value="20">bis 20</option>
+				<option value="30">bis 30</option>
+				<option value="50">bis 50</option>
+				<option value="100">bis 100</option>
+				<option value="1000">bis Tausend</option>
+				<option value="1000000">bis Million</option>
+				<option value="1000000000">bis Milliarde</option>
+			</select>
+		</div>
+		<div class="miniblock">
+			<input type="checkbox" [(ngModel)]="mal10" (change)="mal10Changed()"/>
+			<span style="white-space: nowrap">Mal 10</span>
+		</div>
+	</div>
+
+
+
+	<div class="image">
+		<img src="../../../assets/image-cats.jpg" />
+		<div class="popup" [class.visible]="popupVisible" [class.wrong]="popupWrong">{{popupText}}</div>
+	</div>
+
+
+
+	<form class="aufgabe">
+		<input #firstInput name="first" type="number" [attr.disabled]="firstDisabledAttribute()" [(ngModel)]="first.value"/>
+		<div>{{operator}}</div>
+		<input #secondInput name="second" type="number" [attr.disabled]="secondDisabledAttribute()" [(ngModel)]="second.value"/>
+		<div>=</div>
+		<input #resultInput name="result" type="number" [attr.disabled]="resultDisabledAttribute()" [(ngModel)]="result.value"/>
+	</form>
+
+
+	<button class="action" form="aufgabe" type="submit" [attr.disabled]="getEvaluateButtonDisabledAttribute()" (click)="evaluate()">Auswerten</button>
+</div>	
